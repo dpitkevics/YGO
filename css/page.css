@@ -1,0 +1,41 @@
+/* 
+    Document   : page
+    Created on : 2012.8.8, 19:35:51
+    Author     : Daniels Pitkevics
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+        display: block;
+}
+
+body {
+        background: #666666;
+        font-family: fantasy;
+        color: #ffffff;
+}
+
+#game-area {
+        width: 1200px;
+        height: 500px;
+        margin: 50px auto;
+}
+
+#game-status {
+        width: 300px;
+        height: 500px;
+        float: left;
+}
+
+#game-arena {
+        width: 600px;
+        height: 500px;
+        float: left;
+}
+
+#card-preview {
+        width: 300px;
+        height: 500px;
+        float: left;
+}

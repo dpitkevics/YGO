@@ -1,0 +1,43 @@
+#field-player td {
+        width: 70px;
+        height: 100px;
+}
+
+#field-enemy td {
+        width: 70px;
+        height: 100px;
+}
+
+.field-card {
+        background: #00ccff;
+        border-radius: 5px;
+}
+
+.monster-card {
+        background: #ff9900;
+        border-radius: 5px;
+}
+
+.grave-card {
+        background: #999999;
+        border-radius: 5px;
+}
+
+.fusion-card {
+        background: #9900ff;
+        border-radius: 5px;
+}
+
+.spell-card {
+        background: #009999;
+        border-radius: 5px;
+}
+
+.deck-card {
+        background: #993300;
+        border-radius: 5px;
+}
+
+.card {
+        cursor: pointer;
+}
