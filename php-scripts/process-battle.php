@@ -44,4 +44,5 @@ switch ($function) {
                 break;
 }
 echo json_encode($response);
+$sql->close();
 ?>
