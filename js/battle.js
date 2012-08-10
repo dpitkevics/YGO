@@ -1,6 +1,64 @@
 $(document).ready (function () {
-        var auth = $("#authentication").text();
-        if (auth != 0) {
+        var auth = null;
+        $.ajax({
+                type    :       'POST',
+                url     :       'php-scripts/process-auth.php',
+                dataType:       'json',
+                data    :       {
+                        'function':'checkAuth'
+                },
+                success :       function (data) {
+                        auth = data;
+                },
+                error   :       function (XMLHttpRequest, textStatus, errorThrown) {
+                        $(body).append('<div style="width:100%; height:100px; background:red;">XMLHttpRequest error text: '+ XMLHttpRequest +'. TextStatus error text: '+ textStatus +'. ErrorThrown error text: '+ errorThrown +'</div>');
+                }
+        });
+        if (auth != false) {
+                var maskHeight = $(document).height();
+                var maskWidth = $(window).width();
+                $("#game-mask").css({'width':maskWidth,'height':maskHeight});
+
+                $("#game-mask").fadeIn(1000);
+                $("#game-mask").fadeTo("slow",0.6);
+
+                var winH = $(window).height();
+                var winW = $(window).width();
+
+                var id = "#new-game";
+
+                $(id).css('top', (winH-200)/2-$(id).height()/2);
+                $(id).css('left', winW/2-$(id).width()/2);
+
+                $(id).fadeIn(2000);
+                
+                setInterval(function () {
+                        $.ajax({
+                                type    :       'POST',
+                                url     :       'php-scripts/process-battle.php',
+                                dataType:       'json',
+                                data    :       {
+                                        'function':'getGameList'
+                                },
+                                success :       function (data) {
+                                        var result = '';
+                                        $.each(data, function (key, value) {
+                                                result += '<span class="game" game-id="'+ value['id'] +'">Game ID:'+ value['id'] +'</span><br />';
+                                        });
+                                        $("#available-games").html("");
+                                        $("#available-games").append(result);
+                                },
+                                error   :       function (XMLHttpRequest, textStatus, errorThrown) {
+                                        $("body").append('<div style="width:100%; height:100px; background:red;">XMLHttpRequest error text: '+ XMLHttpRequest +'. TextStatus error text: '+ textStatus +'. ErrorThrown error text: '+ errorThrown +'</div>');
+                                }
+                        });
+                }, 1000);
+                
+                $('.game').live('click', function () {
+                        var gameid = $(this).attr('game-id');
+                        startGame(gameid);
+                });
+                
                 setInterval(function () {
                         $.ajax({
                                 type    :       'POST',
@@ -113,6 +171,28 @@ function checkFieldDiff() {
                 },
                 error   :       function (XMLHttpRequest, textStatus, errorThrown) {
                         $(body).append('<div style="width:100%; height:100px; background:red;">XMLHttpRequest error text: '+ XMLHttpRequest +'. TextStatus error text: '+ textStatus +'. ErrorThrown error text: '+ errorThrown +'</div>');
+                }
+        });
+}
+
+function startGame(gameid) {
+        $.ajax({
+                type    :       'POST',
+                url     :       'php-scripts/process-battle.php',
+                dataType:       'json',
+                data    :       {
+                        'function':'startGame',
+                        'gameid':gameid
+                },
+                success :       function (data) {
+                        $("#new-game").fadeOut(1000);
+                        $("#game-mask").fadeOut(2000);
+                        $("#game-id").text(data['id']);
+                        $("#player").text(2);
+                        $("#player_id").text(data['player_2']);
+                },
+                error   :       function (XMLHttpRequest, textStatus, errorThrown) {
+                        $('body').append('<div style="width:100%; height:100px; background:red;">XMLHttpRequest error text: '+ XMLHttpRequest +'. TextStatus error text: '+ textStatus +'. ErrorThrown error text: '+ errorThrown +'</div>');
                 }
         });
 }

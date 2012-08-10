@@ -60,6 +60,28 @@ body {
         margin: 0px;
 }
 
+#new-game {
+        position: fixed;
+        width: 440px;
+        height: 200px;
+        display: none;
+        z-index: 8999;
+        padding: 20px;
+        border: solid 10pt;
+        border-radius: 10px;
+}
+
+#game-mask {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: 8998;
+        background: #00cccc;
+        display: none;
+        padding: 0px;
+        margin: 0px;
+}
+
 #logout {
         cursor: pointer;
 }

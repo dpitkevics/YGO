@@ -9,8 +9,8 @@
                 <link rel="stylesheet" type="text/css" href="css/field.css" />
                 
                 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.js"></script>
-                <script type="text/javascript" src="js/battle.js"></script>
                 <script type="text/javascript" src="js/auth.js"></script>
+                <script type="text/javascript" src="js/battle.js"></script>
                 <!-- end of includes -->
         </head>
         <body>
@@ -67,6 +67,22 @@
                         </table>
                 </div>
                 <div id="mask"></div>
+                <div id="new-game">
+                        <table>
+                                <tr>
+                                        <td>Available games:</td>
+                                </tr>
+                                <tr>
+                                        <td id="available-games"></td>
+                                </tr>
+                                <tr>
+                                        <td>
+                                                <span id="create-game">Create game</span>
+                                        </td>
+                                </tr>
+                        </table>
+                </div>
+                <div id="game-mask"></div>
                 <div id="game-area">
                         <div id="game-status">
                                 <p id="player-greet"></p>
