@@ -1,17 +1,16 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.5
+-- version 2.11.9.5
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 08, 2012 at 09:56 PM
--- Server version: 5.5.16
--- PHP Version: 5.3.8
+-- Generation Time: Aug 10, 2012 at 03:28 PM
+-- Server version: 5.1.53
+-- PHP Version: 5.2.17
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 --
--- Database: `ygo`
+-- Database: `test-port`
 --
 
 -- --------------------------------------------------------
@@ -25,7 +24,12 @@ CREATE TABLE IF NOT EXISTS `cards_on_hand` (
   `gameid` int(11) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_latvian_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_latvian_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `cards_on_hand`
+--
+
 
 -- --------------------------------------------------------
 
@@ -37,8 +41,14 @@ CREATE TABLE IF NOT EXISTS `con_list` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `conid` int(11) NOT NULL,
   `cardid` int(11) NOT NULL,
+  `player` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_latvian_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_latvian_ci AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `con_list`
+--
+
 
 -- --------------------------------------------------------
 
@@ -53,6 +63,11 @@ CREATE TABLE IF NOT EXISTS `deck` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_latvian_ci AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `deck`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -65,6 +80,11 @@ CREATE TABLE IF NOT EXISTS `deck_cards` (
   `cardid` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_latvian_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `deck_cards`
+--
+
 
 -- --------------------------------------------------------
 
@@ -80,6 +100,11 @@ CREATE TABLE IF NOT EXISTS `deck_left` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_latvian_ci AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `deck_left`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -92,6 +117,11 @@ CREATE TABLE IF NOT EXISTS `dl_cards` (
   `cardid` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_latvian_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `dl_cards`
+--
+
 
 -- --------------------------------------------------------
 
@@ -108,6 +138,11 @@ CREATE TABLE IF NOT EXISTS `extendable_fields` (
   `deckid` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_latvian_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `extendable_fields`
+--
+
 
 -- --------------------------------------------------------
 
@@ -154,8 +189,6 @@ CREATE TABLE IF NOT EXISTS `field` (
 -- Dumping data for table `field`
 --
 
-INSERT INTO `field` (`id`, `gameid`, `timestamp`, `1-t-1`, `2-t-1`, `3-t-1`, `4-t-1`, `5-t-1`, `6-t-1`, `7-t-1`, `1-b-1`, `2-b-1`, `3-b-1`, `4-b-1`, `5-b-1`, `6-b-1`, `7-b-1`, `1-t-2`, `2-t-2`, `3-t-2`, `4-t-2`, `5-t-2`, `6-t-2`, `7-t-2`, `1-b-2`, `2-b-2`, `3-b-2`, `4-b-2`, `5-b-2`, `6-b-2`, `7-b-2`) VALUES
-(1, 1, '2012-08-08 17:47:24', 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -170,6 +203,11 @@ CREATE TABLE IF NOT EXISTS `fusion` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_latvian_ci AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `fusion`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -182,14 +220,12 @@ CREATE TABLE IF NOT EXISTS `games` (
   `userid_2` int(11) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_latvian_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_latvian_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `games`
 --
 
-INSERT INTO `games` (`id`, `userid_1`, `userid_2`, `timestamp`) VALUES
-(1, 1, 2, '2012-08-08 17:46:41');
 
 -- --------------------------------------------------------
 
@@ -203,6 +239,30 @@ CREATE TABLE IF NOT EXISTS `grave` (
   `cardid` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_latvian_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `grave`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmp_games`
+--
+
+CREATE TABLE IF NOT EXISTS `tmp_games` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userid_1` int(11) NOT NULL,
+  `userid_2` int(11) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_latvian_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `tmp_games`
+--
+
 
 -- --------------------------------------------------------
 
@@ -230,5 +290,5 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `password`, `nickname`, `won`, `lost`, `draw`, `timestamp`, `deckid`) VALUES
-(1, 'Daniels', 'PitkeviËs', 'daniels.pitkevics@gmail.com', 'hawks111', 'daniels', '0', '0', '0', '2012-08-08 16:28:43', 1),
-(2, 'John', 'Smith', 'john@smith.com', 'john123', 'johny', '0', '0', '0', '2012-08-08 16:29:24', 2);
+(1, 'Daniels', 'Pitkeviƒçs', 'daniels.pitkevics@gmail.com', '6a5cdcee9f2ee619165b13489cab053c', 'daniels', '0', '0', '0', '2012-08-08 19:28:43', 1),
+(2, 'John', 'Smith', 'john@smith.com', '6e0b7076126a29d5dfcbd54835387b7b', 'johny', '0', '0', '0', '2012-08-08 19:29:24', 2);

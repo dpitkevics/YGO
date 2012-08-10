@@ -15,7 +15,7 @@
         </head>
         <body>
                 <div style="display:none">
-                        <span id="game-id">1</span>
+                        <span id="game-id"></span>
                         <span id="player"></span>
                         <span id="player-id"></span>
                         <span id="authentication">0</span>

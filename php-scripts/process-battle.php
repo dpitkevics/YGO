@@ -14,11 +14,13 @@ switch ($function) {
                 $sql->query($query);
                 break;
         case 'checkDiff':
-                $gameid = $_POST['gameid'];
-                $query = 'SELECT * FROM field WHERE gameid = '.$gameid;
-                $result = $sql->query($query);
-                $row = $result->fetch_array();
-                $response = $row;
+                if ($gameid != '') {
+                        $gameid = $_POST['gameid'];
+                        $query = 'SELECT * FROM field WHERE gameid = '.$gameid;
+                        $result = $sql->query($query);
+                        $row = $result->fetch_array();
+                        $response = $row;
+                }
                 break;
         case 'checkCONDiff':
                 $gameid = $_POST['gameid'];
