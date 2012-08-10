@@ -70,6 +70,15 @@ switch ($function) {
                 $result = $sql->query($query);
                 $response = $result->fetch_assoc();
                 $response['player_2'] = $player_2;
+                break;
+        case 'createGame':
+                $player = $_SESSION['auth']['data']['id'];
+                $query = 'INSERT INTO tmp_games (userid_1, userid_2) VALUES ("'.$player.'", 0)';
+                $sql->query($query);
+                $gameid = $sql->insert_id;
+                $response['userid'] = $player;
+                $response['gameid'] = $gameid;
+                break;
 }
 echo json_encode($response);
 $sql->close();

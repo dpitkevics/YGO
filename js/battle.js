@@ -1,5 +1,6 @@
 $(document).ready (function () {
         var auth = null;
+        var createdGameId = null;
         $.ajax({
                 type    :       'POST',
                 url     :       'php-scripts/process-auth.php',
@@ -56,7 +57,13 @@ $(document).ready (function () {
                 
                 $('.game').live('click', function () {
                         var gameid = $(this).attr('game-id');
-                        startGame(gameid);
+                        if (gameid != createdGameId) {
+                                startGame(gameid);
+                        }
+                });
+                
+                $('#create-game').live('click', function () {
+                        createGame();
                 });
                 
                 setInterval(function () {
@@ -190,6 +197,23 @@ function startGame(gameid) {
                         $("#game-id").text(data['id']);
                         $("#player").text(2);
                         $("#player_id").text(data['player_2']);
+                },
+                error   :       function (XMLHttpRequest, textStatus, errorThrown) {
+                        $('body').append('<div style="width:100%; height:100px; background:red;">XMLHttpRequest error text: '+ XMLHttpRequest +'. TextStatus error text: '+ textStatus +'. ErrorThrown error text: '+ errorThrown +'</div>');
+                }
+        });
+}
+
+function createGame() {
+        $.ajax({
+                type    :       'POST',
+                url     :       'php-scripts/process-battle.php',
+                dataType:       'json',
+                data    :       {
+                        'function':'createGame'
+                },
+                success :       function (data) {
+                        createdGameId = data['gameid'];
                 },
                 error   :       function (XMLHttpRequest, textStatus, errorThrown) {
                         $('body').append('<div style="width:100%; height:100px; background:red;">XMLHttpRequest error text: '+ XMLHttpRequest +'. TextStatus error text: '+ textStatus +'. ErrorThrown error text: '+ errorThrown +'</div>');
