@@ -39,3 +39,27 @@ body {
         height: 500px;
         float: left;
 }
+
+#auth {
+        position: fixed;
+        width: 440px;
+        height: 200px;
+        display: none;
+        z-index: 9999;
+        padding: 20px;
+}
+
+#mask {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: 9000;
+        background: #000;
+        display: none;
+        padding: 0px;
+        margin: 0px;
+}
+
+#logout {
+        cursor: pointer;
+}

@@ -10,19 +10,70 @@
                 
                 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.js"></script>
                 <script type="text/javascript" src="js/battle.js"></script>
+                <script type="text/javascript" src="js/auth.js"></script>
                 <!-- end of includes -->
         </head>
         <body>
                 <div style="display:none">
                         <span id="game-id">1</span>
+                        <span id="player"></span>
+                        <span id="player-id"></span>
+                        <span id="authentication">0</span>
                 </div>
+                <div id="auth">
+                        <p id="title">Login or Register</p>  
+                        <table>
+                                <tr>
+                                        <td>
+                                                Login
+                                        </td>
+                                        <td>
+                                                Register
+                                        </td>
+                                </tr>
+                                <tr>
+                                        <td>
+                                                <table>
+                                                        <tr>
+                                                                <td>
+                                                                        Username:
+                                                                </td>
+                                                                <td>
+                                                                        <input type="text" id="username" />
+                                                                </td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td>
+                                                                        Password:
+                                                                </td>
+                                                                <td>
+                                                                        <input type="password" id="password" />
+                                                                </td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td>
+                                                                        &nbsp;
+                                                                </td>
+                                                                <td>
+                                                                        <input type="button" id="login-submit" value="Login" />
+                                                                </td>
+                                                        </tr>
+                                                </table>
+                                        </td>
+                                        <td>
+                                                No registration available
+                                        </td>
+                                </tr>
+                        </table>
+                </div>
+                <div id="mask"></div>
                 <div id="game-area">
                         <div id="game-status">
-                                game status
+                                <p id="player-greet"></p>
+                                <p id="game-data">game data</p>
                         </div>
                         <div id="game-arena">
                                 <div id="part-opponent">
-                                        oponents
                                 </div>
                                 <div id="part-field">
                                         <div id="field-enemy">
@@ -71,7 +122,6 @@
                                         </div>
                                 </div>
                                 <div id="part-player">
-                                        <span card-id="1" class="card">Blue-Eyes White Dragon</span>
                                 </div>
                         </div>
                         <div id="card-preview">
